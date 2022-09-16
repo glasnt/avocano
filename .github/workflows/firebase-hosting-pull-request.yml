@@ -3,6 +3,10 @@
 
 name: Deploy to Firebase Hosting on PR
 'on': pull_request
+
+env:
+  PR_TAG: pr-${{ github.event.pull_request.number }}
+
 jobs:
   build_and_preview:
     if: '${{ github.event.pull_request.head.repo.full_name == github.repository }}'
@@ -29,14 +33,14 @@ jobs:
       run: |
           gcloud builds submit \
             --config provisioning/server-preview.cloudbuild.yaml \
-            --substitutions _PULL_REQUEST=${{ github.event.pull_request.number }} || true
+            --substitutions _PR_TAG=$PR_TAG || true
 
     # Update Firebase config for new service
     - name: Update service
       run: | 
         cd client
         cat firebase.json
-        sed -i 's/"api"/"api-${{ github.event.pull_request.number }}"/g' firebase.json
+        sed -i 's/"api"/"api-${_PR_TAG}"/g' firebase.json
         echo "***"
         cat firebase.json
 

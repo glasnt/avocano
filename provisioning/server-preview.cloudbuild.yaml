@@ -47,15 +47,15 @@ steps:
           --set-secrets DJANGO_ENV=django_settings:latest \
           --set-cloudsql-instances $$SQL_INSTANCE \
           --allow-unauthenticated \
-          --labels pull_request=${_PULL_REQUEST}
+          --labels pull_request=${_PR_TAG}
 
 
 substitutions:
   _SERVICE_NAME: api
-  _PREVIEW_IMAGE_NAME: server-pr-${_PULL_REQUEST}
-  _PREVIEW_SERVICE_NAME: api-pr-${_PULL_REQUEST}
+  _PREVIEW_IMAGE_NAME: server-${_PR_TAG}
+  _PREVIEW_SERVICE_NAME: api-${_PR_TAG}
   _REGION: us-central1
-  _PULL_REQUEST: manual
+  _PR_TAG: manual
 
 options:
   dynamic_substitutions: true
