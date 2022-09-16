@@ -36,10 +36,8 @@ jobs:
     - name: Update service
       run: | 
         cd client
-        cat firebase.json
-        sed -i 's/"api"/"api-pr-${{ github.event.pull_request.number }}"/g' firebase.json
-        echo "***"
-        cat firebase.json
+        sed -i 's/"api"/"api-pr-${{ github.event.pull_request.number }}"/g' client/firebase.json
+        grep serviceId client/firebase.json
 
     # Do Firebase things (auth through secret)
     - name: Build frontend client
