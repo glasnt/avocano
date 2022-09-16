@@ -24,7 +24,7 @@ router = DefaultRouter()
 
 router.get_api_root_view().cls.__name__ = "Avocano Server"
 router.get_api_root_view().cls.__doc__ = (
-    "This is the Django REST Framework API, serving all endpoints."
+    "This is the Django REST Framework API, serving all endpoints. 🥑"
 )
 
 router.register(r"products", views.ProductViewSet, basename="product")
