@@ -30,12 +30,12 @@ steps:
     args:
       - '-c'
       - |
-        export SQL_INSTANCE=$(gcloud run services describe $_SERVICE_NAME --region $REGION \
+        export SQL_INSTANCE=$(gcloud run services describe $_SERVICE_NAME --region $_REGION \
             --format  "value(spec.template.metadata.annotations.'run.googleapis.com/cloudsql-instances')")
 
         gcloud run deploy ${_PREVIEW_SERVICE_NAME} \
           --image gcr.io/$PROJECT_ID/${_PREVIEW_IMAGE_NAME} \
-          --region $REGION \
+          --region $_REGION \
           --service-account api-backend@${PROJECT_ID}.iam.gserviceaccount.com \
           --set-secrets DJANGO_ENV=django_settings:latest \
           --set-cloudsql-instances $$SQL_INSTANCE \
