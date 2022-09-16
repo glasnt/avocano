@@ -31,11 +31,17 @@ jobs:
             --config provisioning/server-preview.cloudbuild.yaml \
             --substitutions _PULL_REQUEST=${{ github.event.pull_request.number }}
 
+    # Update Firebase config for new service
+    - name: Update service
+      run: | 
+        cat firebase.json
+        sed -i 's/"api"/"api-${{ github.event.pull_request.number }}"/g' firebase.json
+        echo "***"
+        cat firebase.json
+
     # Do Firebase things (auth through secret)
     - name: Build frontend client
-      run: npm i --omit dev && npm run build
-      with: 
-        entrypoint: client
+      run: cd client && npm i --omit dev && npm run build
 
     - name: Deploy frontend client
       uses: FirebaseExtended/action-hosting-deploy@v0
