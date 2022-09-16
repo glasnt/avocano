@@ -40,7 +40,7 @@ jobs:
       run: | 
         cd client
         cat firebase.json
-        sed -i 's/"api"/"api-${_PR_TAG}"/g' firebase.json
+        sed -i 's/"api"/"api-$_PR_TAG"/g' firebase.json
         echo "***"
         cat firebase.json
 
