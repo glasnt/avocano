@@ -9,10 +9,10 @@ jobs:
     if: '${{ github.event.pull_request.head.repo.full_name == github.repository }}'
     runs-on: ubuntu-latest
     
-    permissions:
-      contents: 'read'
-      id-token: 'write'
-      pull-requests: write
+    #permissions:
+    #  contents: 'read'
+    #  id-token: 'write'
+    #  pull-requests: write
 
     # Auth to Google Cloud
     steps:
