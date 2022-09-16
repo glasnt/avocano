@@ -34,6 +34,7 @@ jobs:
     # Update Firebase config for new service
     - name: Update service
       run: | 
+        cd client
         cat firebase.json
         sed -i 's/"api"/"api-${{ github.event.pull_request.number }}"/g' firebase.json
         echo "***"
@@ -41,7 +42,7 @@ jobs:
 
     # Do Firebase things (auth through secret)
     - name: Build frontend client
-      run: cd client && npm i --omit dev && npm run build
+      run:  cd client && npm i --omit dev && npm run build
 
     - name: Deploy frontend client
       uses: FirebaseExtended/action-hosting-deploy@v0
