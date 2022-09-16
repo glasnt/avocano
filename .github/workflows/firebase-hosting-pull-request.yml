@@ -15,6 +15,7 @@ jobs:
       - run: npm i --omit dev && npm run build
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
+          entrypoint: client
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
           firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_AVOCANO_PREVIEW }}'
           projectId: avocano-preview
