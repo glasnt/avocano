@@ -23,6 +23,13 @@ steps:
       - gcr.io/$PROJECT_ID/${_PREVIEW_IMAGE_NAME}
       - --builder=gcr.io/buildpacks/builder:v1
       - --path=server/
+  
+  - id: server push
+    name: gcr.io/cloud-builders/docker
+    args:
+      - push
+      - gcr.io/$PROJECT_ID/${_PREVIEW_IMAGE_NAME}
+
 
   - id: deploy preview
     name: "gcr.io/google.com/cloudsdktool/cloud-sdk"
@@ -42,8 +49,6 @@ steps:
           --allow-unauthenticated \
           --labels pull_request=${_PULL_REQUEST}
 
-images:
- - gcr.io/$PROJECT_ID/${_IMAGE_NAME}
 
 substitutions:
   _SERVICE_NAME: api
