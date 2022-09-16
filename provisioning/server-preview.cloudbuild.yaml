@@ -47,7 +47,7 @@ steps:
           --set-secrets DJANGO_ENV=django_settings:latest \
           --set-cloudsql-instances $$SQL_INSTANCE \
           --allow-unauthenticated \
-          --labels pull_request=${_PULL_REQUEST}
+          --labels pull_request=${_PULL_REQUEST} || true
 
 
 substitutions:
