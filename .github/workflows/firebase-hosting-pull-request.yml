@@ -27,7 +27,7 @@ jobs:
 
     - name: 'Deploy backend api'
       run: |
-          gcloud build submit \
+          gcloud builds submit \
             --config provisioning/server-preview.cloudbuild.yaml \
             --substitutions _PULL_REQUEST=${{ github.event.pull_request.number }}
 
