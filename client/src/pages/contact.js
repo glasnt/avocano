@@ -28,7 +28,7 @@ export class Contact extends LitElement {
         <div class="contactWrapper">
           This website was deployed from sample code in the 
           <a href="https://github.com/GoogleCloudPlatform/avocano">GoogleCloudPlatform/avocano</a>
-          repo on GitHub.
+          repo on GitHub. 🥑
         </div>
       </div>
     `;
